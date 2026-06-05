@@ -1,0 +1,13 @@
+.vd { padding: 28px 20px 60px; }
+.vd-back { color: var(--c-muted); text-decoration: none; font-weight: 500; display: inline-block; margin-bottom: 20px; }
+.vd-back:hover { color: var(--c-primary); }
+.vd-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 32px; }
+.vd-image { border-radius: var(--radius); min-height: 400px; background-size: cover; background-position: center; box-shadow: var(--shadow); }
+.vd-info h1 { margin: 12px 0 6px; font-size: 34px; }
+.vd-price { font-family: 'Sora'; font-weight: 800; font-size: 34px; color: var(--c-primary); margin-bottom: 14px; }
+.vd-specs { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 24px 0; }
+.vd-specs div { display: flex; flex-direction: column; padding: 12px 14px; background: #fff; border-radius: 10px; border: 1px solid var(--c-border); }
+.vd-specs span { font-size: 12px; color: var(--c-muted); }
+.vd-specs b { font-size: 16px; }
+.vd-fav-msg { margin-top: 12px; padding: 10px 14px; background: #e3f2fd; color: var(--c-primary); border-radius: 8px; }
+@media (max-width: 800px) { .vd-grid { grid-template-columns: 1fr; } .vd-image { min-height: 260px; } }

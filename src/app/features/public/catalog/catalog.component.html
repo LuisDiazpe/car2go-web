@@ -1,0 +1,30 @@
+<div class="container catalog">
+  <div class="cat-head">
+    <h1>{{ 'CAR_LISTING' | translate }}</h1>
+    <div class="cat-search">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input [(ngModel)]="search" [ngModelOptions]="{standalone:true}" placeholder="{{ 'SEARCH_PLACEHOLDER' | translate }}">
+    </div>
+  </div>
+
+  <div *ngIf="loading" class="cat-loading"><i class="fa-solid fa-spinner fa-spin"></i> {{ 'LOADING' | translate }}</div>
+
+  <div *ngIf="!loading && filtered.length === 0" class="cat-empty">{{ 'NO_VEHICLES' | translate }}</div>
+
+  <div class="grid cat-grid">
+    <a class="vcard card" *ngFor="let v of filtered" [routerLink]="['/vehicle', v.id]">
+      <div class="vcard-img" [style.background-image]="'url(' + img(v) + ')'">
+        <span class="badge" [ngClass]="statusClass(v.status)">{{ v.status }}</span>
+      </div>
+      <div class="vcard-body">
+        <h3>{{ v.brand }} {{ v.model }}</h3>
+        <div class="vcard-meta"><i class="fa-solid fa-location-dot"></i> {{ v.location }} · {{ v.year }}</div>
+        <div class="vcard-price">$ {{ v.price | number }}</div>
+        <div class="vcard-specs">
+          <span><i class="fa-solid fa-gauge"></i> {{ v.mileage | number }} km</span>
+          <span><i class="fa-solid fa-gas-pump"></i> {{ v.fuel }}</span>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>

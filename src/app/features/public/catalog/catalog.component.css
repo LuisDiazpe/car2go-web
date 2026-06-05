@@ -1,0 +1,18 @@
+.catalog { padding: 32px 20px 60px; }
+.cat-head { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; margin-bottom: 28px; }
+.cat-head h1 { margin: 0; }
+.cat-search { position: relative; }
+.cat-search i { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--c-muted); }
+.cat-search input { padding: 12px 14px 12px 40px; border: 1.5px solid var(--c-border); border-radius: 10px; font-family: 'Outfit'; font-size: 15px; min-width: 280px; }
+.cat-search input:focus { outline: none; border-color: var(--c-primary); }
+.cat-grid { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+.vcard { text-decoration: none; color: inherit; transition: transform .2s, box-shadow .2s; }
+.vcard:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+.vcard-img { height: 190px; background-size: cover; background-position: center; position: relative; }
+.vcard-img .badge { position: absolute; top: 12px; right: 12px; }
+.vcard-body { padding: 18px; }
+.vcard-body h3 { margin: 0 0 6px; font-size: 19px; }
+.vcard-meta { color: var(--c-muted); font-size: 14px; margin-bottom: 10px; }
+.vcard-price { font-family: 'Sora'; font-weight: 700; font-size: 24px; color: var(--c-primary); margin-bottom: 12px; }
+.vcard-specs { display: flex; gap: 16px; font-size: 13px; color: var(--c-muted); }
+.cat-loading, .cat-empty { text-align: center; padding: 60px; color: var(--c-muted); font-size: 17px; }

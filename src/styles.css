@@ -1,1 +1,74 @@
-/* You can add global styles to this file, and also import other style files */
+/* ===== Car2Go - Estilos globales ===== */
+@import '@fortawesome/fontawesome-free/css/all.min.css';
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Outfit:wght@300;400;500;600&display=swap');
+
+:root {
+  --c-ink: #0e1726;          /* azul muy oscuro, casi negro */
+  --c-primary: #1565c0;      /* azul Car2Go */
+  --c-primary-dark: #0d47a1;
+  --c-accent: #f5a623;       /* ámbar/dorado del logo */
+  --c-bg: #f4f6f9;
+  --c-surface: #ffffff;
+  --c-muted: #6b7a90;
+  --c-border: #e2e8f0;
+  --c-success: #2e7d32;
+  --c-danger: #c62828;
+  --radius: 14px;
+  --shadow: 0 6px 24px rgba(14,23,38,.08);
+  --shadow-lg: 0 14px 40px rgba(14,23,38,.14);
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: 'Outfit', sans-serif;
+  background: var(--c-bg);
+  color: var(--c-ink);
+}
+h1, h2, h3, h4, .display { font-family: 'Sora', sans-serif; }
+
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+/* Botones */
+.btn {
+  font-family: 'Sora', sans-serif; font-weight: 600; font-size: 15px;
+  border: none; border-radius: 10px; padding: 12px 22px; cursor: pointer;
+  transition: transform .15s ease, box-shadow .15s ease, background .2s ease;
+}
+.btn-primary { background: var(--c-primary); color: #fff; }
+.btn-primary:hover { background: var(--c-primary-dark); transform: translateY(-2px); box-shadow: var(--shadow); }
+.btn-accent { background: var(--c-accent); color: var(--c-ink); }
+.btn-accent:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+.btn-ghost { background: transparent; border: 1.5px solid var(--c-border); color: var(--c-ink); }
+.btn-ghost:hover { border-color: var(--c-primary); color: var(--c-primary); }
+.btn-block { width: 100%; }
+
+/* Tarjetas */
+.card { background: var(--c-surface); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
+
+/* Inputs */
+.field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+.field label { font-size: 13px; font-weight: 600; color: var(--c-muted); }
+.field input, .field select, .field textarea {
+  font-family: 'Outfit', sans-serif; font-size: 15px;
+  padding: 12px 14px; border: 1.5px solid var(--c-border); border-radius: 10px;
+  background: #fff; transition: border-color .2s ease;
+}
+.field input:focus, .field select:focus, .field textarea:focus {
+  outline: none; border-color: var(--c-primary);
+}
+
+/* Badges de estado */
+.badge { display: inline-block; padding: 4px 12px; border-radius: 999px; font-size: 12px; font-weight: 600; }
+.badge-pending { background: #fff3e0; color: #e65100; }
+.badge-reviewed { background: #e8f5e9; color: #2e7d32; }
+.badge-rejected { background: #ffebee; color: #c62828; }
+.badge-sold { background: #eceff1; color: #455a64; }
+
+/* Utilidades */
+.text-muted { color: var(--c-muted); }
+.text-center { text-align: center; }
+.mt-1 { margin-top: 8px; } .mt-2 { margin-top: 16px; } .mt-3 { margin-top: 24px; }
+.grid { display: grid; gap: 24px; }
+@media (max-width: 768px) { .container { padding: 0 16px; } }

@@ -1,0 +1,31 @@
+<div class="auth-wrap">
+  <div class="auth-card card">
+    <div class="auth-logo"><i class="fa-solid fa-car-side"></i> CAR<b>2</b>GO</div>
+    <h2>{{ 'WELCOME_BACK' | translate }}</h2>
+    <p class="text-muted">{{ 'LOGIN_SUBTITLE' | translate }}</p>
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <div class="field">
+        <label>{{ 'EMAIL_OR_USERNAME' | translate }}</label>
+        <input type="text" formControlName="identifier" placeholder="email@car2go.com">
+      </div>
+      <div class="field">
+        <label>{{ 'PASSWORD' | translate }}</label>
+        <div class="pass">
+          <input [type]="hide ? 'password' : 'text'" formControlName="password" placeholder="••••••••">
+          <button type="button" (click)="hide=!hide"><i class="fa-solid" [class.fa-eye]="hide" [class.fa-eye-slash]="!hide"></i></button>
+        </div>
+      </div>
+
+      <div class="auth-error" *ngIf="error">{{ error | translate }}</div>
+
+      <button class="btn btn-primary btn-block" type="submit" [disabled]="loading">
+        {{ loading ? ('LOADING' | translate) : ('LOGIN' | translate) }}
+      </button>
+    </form>
+
+    <p class="text-center mt-2 text-muted">
+      {{ 'NO_ACCOUNT' | translate }} <a routerLink="/register">{{ 'SIGN_UP' | translate }}</a>
+    </p>
+  </div>
+</div>

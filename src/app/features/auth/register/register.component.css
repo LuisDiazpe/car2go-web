@@ -1,0 +1,18 @@
+.auth-wrap { min-height: calc(100vh - 64px); display: flex; align-items: center; justify-content: center; padding: 40px 20px; }
+.auth-card { width: 100%; max-width: 460px; padding: 40px; }
+.auth-logo { font-family: 'Sora'; font-weight: 800; font-size: 24px; color: var(--c-ink); text-align: center; margin-bottom: 18px; }
+.auth-logo i, .auth-logo b { color: var(--c-accent); }
+.auth-card h2 { margin: 0 0 4px; }
+.pass { position: relative; display: flex; }
+.pass input { flex: 1; padding-right: 44px; width: 100%; }
+.pass button { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); background: none; border: none; color: var(--c-muted); cursor: pointer; }
+.roles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.role { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 14px 8px; border: 1.5px solid var(--c-border); border-radius: 10px; cursor: pointer; font-size: 14px; font-weight: 500; transition: all .2s; }
+.role i { font-size: 18px; color: var(--c-muted); }
+.role input { display: none; }
+.role.sel { border-color: var(--c-primary); background: #e3f2fd; }
+.role.sel i { color: var(--c-primary); }
+.auth-error { background: #ffebee; color: var(--c-danger); padding: 10px 14px; border-radius: 8px; font-size: 14px; margin-bottom: 14px; }
+.auth-success { background: #e8f5e9; color: var(--c-success); padding: 12px 14px; border-radius: 8px; font-size: 15px; margin-bottom: 14px; text-align: center; }
+.auth-card a { color: var(--c-primary); font-weight: 600; text-decoration: none; }
+@media (max-width: 480px) { .roles { grid-template-columns: 1fr; } }

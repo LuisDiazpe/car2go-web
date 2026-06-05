@@ -1,0 +1,40 @@
+<header class="tb">
+  <div class="tb-inner container">
+    <a routerLink="/home" class="tb-logo">
+      <i class="fa-solid fa-car-side"></i> <span>CAR<b>2</b>GO</span>
+    </a>
+
+    <button class="tb-burger" (click)="toggleMenu()"><i class="fa-solid fa-bars"></i></button>
+
+    <nav class="tb-nav" [class.open]="menuOpen">
+      <a routerLink="/home" (click)="menuOpen=false">{{ 'HOME' | translate }}</a>
+      <a routerLink="/catalog" (click)="menuOpen=false">{{ 'CAR_LISTING' | translate }}</a>
+
+      <ng-container *ngIf="isSeller">
+        <a routerLink="/seller/my-vehicles" (click)="menuOpen=false">{{ 'MY_CARS' | translate }}</a>
+        <a routerLink="/seller/publish" (click)="menuOpen=false">{{ 'PUBLISH' | translate }}</a>
+      </ng-container>
+      <ng-container *ngIf="isMechanic">
+        <a routerLink="/mechanic/pending" (click)="menuOpen=false">{{ 'PENDING_INSPECTIONS' | translate }}</a>
+      </ng-container>
+      <ng-container *ngIf="isBuyer">
+        <a routerLink="/buyer/favorites" (click)="menuOpen=false">{{ 'MY_FAVORITES' | translate }}</a>
+        <a routerLink="/buyer/purchases" (click)="menuOpen=false">{{ 'MY_PURCHASES' | translate }}</a>
+      </ng-container>
+
+      <!-- Selector de idioma -->
+      <div class="tb-lang">
+        <button (click)="switchLang('es')" [class.active]="lang.current()==='es'">ES</button>
+        <button (click)="switchLang('en')" [class.active]="lang.current()==='en'">EN</button>
+      </div>
+
+      <ng-container *ngIf="!user">
+        <a routerLink="/login" class="tb-cta" (click)="menuOpen=false">{{ 'LOGIN' | translate }}</a>
+      </ng-container>
+      <ng-container *ngIf="user">
+        <span class="tb-user"><i class="fa-solid fa-user"></i> {{ user.username }}</span>
+        <a routerLink="/login" class="tb-cta" (click)="logout(); menuOpen=false">{{ 'LOGOUT' | translate }}</a>
+      </ng-container>
+    </nav>
+  </div>
+</header>

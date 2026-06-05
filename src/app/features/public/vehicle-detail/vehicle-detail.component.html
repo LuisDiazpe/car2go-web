@@ -1,0 +1,27 @@
+<div class="container vd" *ngIf="vehicle">
+  <a routerLink="/catalog" class="vd-back"><i class="fa-solid fa-arrow-left"></i> {{ 'BACK' | translate }}</a>
+  <div class="vd-grid">
+    <div class="vd-image" [style.background-image]="'url(' + img(vehicle) + ')'"></div>
+    <div class="vd-info">
+      <span class="badge" [ngClass]="{'badge-pending': vehicle.status==='PENDING','badge-reviewed': vehicle.status==='REVIEWED','badge-rejected': vehicle.status==='REJECTED','badge-sold': vehicle.status==='SOLD'}">{{ vehicle.status }}</span>
+      <h1>{{ vehicle.brand }} {{ vehicle.model }}</h1>
+      <div class="vd-price">$ {{ vehicle.price | number }}</div>
+      <p class="text-muted">{{ vehicle.description }}</p>
+
+      <div class="vd-specs">
+        <div><span>{{ 'YEAR' | translate }}</span><b>{{ vehicle.year }}</b></div>
+        <div><span>{{ 'MILEAGE' | translate }}</span><b>{{ vehicle.mileage | number }} km</b></div>
+        <div><span>{{ 'FUEL' | translate }}</span><b>{{ vehicle.fuel }}</b></div>
+        <div><span>{{ 'TRANSMISSION' | translate }}</span><b>{{ vehicle.transmission }}</b></div>
+        <div><span>{{ 'COLOR' | translate }}</span><b>{{ vehicle.color }}</b></div>
+        <div><span>{{ 'LOCATION' | translate }}</span><b>{{ vehicle.location }}</b></div>
+      </div>
+
+      <div class="vd-actions" *ngIf="isBuyer">
+        <button class="btn btn-accent" (click)="addFavorite()"><i class="fa-solid fa-heart"></i> {{ 'ADD_FAVORITE' | translate }}</button>
+      </div>
+      <div class="vd-fav-msg" *ngIf="favMessage">{{ favMessage | translate }}</div>
+    </div>
+  </div>
+</div>
+<div class="container" *ngIf="loading"><p class="text-center text-muted" style="padding:60px"><i class="fa-solid fa-spinner fa-spin"></i> {{ 'LOADING' | translate }}</p></div>
