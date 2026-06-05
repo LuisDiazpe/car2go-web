@@ -1,0 +1,8 @@
+.form-page { padding: 32px 20px 60px; max-width: 900px; }
+.form-page h1 { margin: 0 0 4px; }
+.form-card { padding: 30px; margin-top: 20px; }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+.field.full { grid-column: 1 / -1; }
+.auth-error { background:#ffebee;color:var(--c-danger);padding:10px 14px;border-radius:8px;margin:14px 0; }
+.auth-success { background:#e8f5e9;color:var(--c-success);padding:12px 14px;border-radius:8px;margin:14px 0; }
+@media (max-width: 700px) { .form-grid { grid-template-columns: 1fr; } }

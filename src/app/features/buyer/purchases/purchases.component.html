@@ -1,0 +1,19 @@
+<div class="container pur-page">
+  <h1>{{ 'MY_PURCHASES' | translate }}</h1>
+
+  <div *ngIf="loading" class="empty"><i class="fa-solid fa-spinner fa-spin"></i> {{ 'LOADING' | translate }}</div>
+  <div *ngIf="!loading && transactions.length===0" class="empty">{{ 'NO_PURCHASES' | translate }}</div>
+
+  <div class="grid">
+    <div class="card trow" *ngFor="let t of transactions">
+      <div>
+        <h3>{{ 'TRANSACTION' | translate }} #{{ t.id }}</h3>
+        <div class="text-muted">{{ 'VEHICLE_ID' | translate }}: {{ t.vehicleId }} · {{ t.paymentMethod }}</div>
+      </div>
+      <div class="trow-right">
+        <div class="trow-amount">$ {{ t.amount | number }}</div>
+        <span class="badge" [ngClass]="statusClass(t.status)">{{ t.status }}</span>
+      </div>
+    </div>
+  </div>
+</div>

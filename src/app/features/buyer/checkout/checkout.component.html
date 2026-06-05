@@ -1,0 +1,28 @@
+<div class="container checkout" *ngIf="vehicle">
+  <h1>{{ 'CHECKOUT' | translate }}</h1>
+
+  <div class="done-msg" *ngIf="done"><i class="fa-solid fa-circle-check"></i> {{ 'PAYMENT_SUCCESS' | translate }}</div>
+
+  <div class="co-grid" *ngIf="!done">
+    <div class="card co-summary">
+      <div class="co-img" [style.background-image]="'url('+img(vehicle)+')'"></div>
+      <h3>{{ vehicle.brand }} {{ vehicle.model }}</h3>
+      <div class="text-muted">{{ vehicle.year }} · {{ vehicle.location }}</div>
+      <div class="co-total"><span>{{ 'TOTAL' | translate }}</span><b>$ {{ vehicle.price | number }}</b></div>
+    </div>
+
+    <div class="card co-pay">
+      <h3>{{ 'PAYMENT_METHOD' | translate }}</h3>
+      <div class="pay-options">
+        <label class="pay-opt" [class.sel]="paymentMethod==='CARD'"><input type="radio" [(ngModel)]="paymentMethod" value="CARD"><i class="fa-solid fa-credit-card"></i> {{ 'CARD' | translate }}</label>
+        <label class="pay-opt" [class.sel]="paymentMethod==='CASH'"><input type="radio" [(ngModel)]="paymentMethod" value="CASH"><i class="fa-solid fa-money-bill"></i> {{ 'CASH' | translate }}</label>
+        <label class="pay-opt" [class.sel]="paymentMethod==='TRANSFER'"><input type="radio" [(ngModel)]="paymentMethod" value="TRANSFER"><i class="fa-solid fa-building-columns"></i> {{ 'TRANSFER' | translate }}</label>
+      </div>
+      <div class="auth-error" *ngIf="error">{{ error | translate }}</div>
+      <button class="btn btn-primary btn-block" (click)="pay()" [disabled]="processing">
+        {{ processing ? ('PROCESSING'|translate) : ('CONFIRM_PAYMENT'|translate) }}
+      </button>
+      <p class="text-muted text-center mt-1"><i class="fa-solid fa-lock"></i> {{ 'SECURE_PAYMENT' | translate }}</p>
+    </div>
+  </div>
+</div>

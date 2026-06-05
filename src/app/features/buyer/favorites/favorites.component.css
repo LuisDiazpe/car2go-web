@@ -1,0 +1,12 @@
+.fav-page { padding: 32px 20px 60px; }
+.fav-page h1 { margin:0 0 24px; }
+.fav-grid { grid-template-columns: repeat(auto-fill, minmax(280px,1fr)); }
+.vcard-img { height: 170px; background-size:cover; background-position:center; }
+.vcard-body { padding:18px; }
+.vcard-body h3 { margin:0 0 4px; }
+.vcard-price { font-family:'Sora'; font-weight:700; font-size:22px; color:var(--c-primary); margin:10px 0; }
+.vcard-actions { display:flex; gap:10px; }
+.vcard-actions .btn-primary { flex:1; text-align:center; text-decoration:none; }
+.btn-ghost.danger { color:var(--c-danger); border-color:#f3c2c2; }
+.empty { text-align:center; padding:60px; color:var(--c-muted); font-size:17px; }
+.empty i { font-size:42px; margin-bottom:10px; }

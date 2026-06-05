@@ -1,0 +1,25 @@
+<div class="container my-page">
+  <div class="my-head">
+    <h1>{{ 'MY_CARS' | translate }}</h1>
+    <a routerLink="/seller/publish" class="btn btn-primary"><i class="fa-solid fa-plus"></i> {{ 'PUBLISH' | translate }}</a>
+  </div>
+
+  <div class="info-msg" *ngIf="message">{{ message | translate }}</div>
+  <div *ngIf="loading" class="empty"><i class="fa-solid fa-spinner fa-spin"></i> {{ 'LOADING' | translate }}</div>
+  <div *ngIf="!loading && vehicles.length===0" class="empty">{{ 'NO_MY_VEHICLES' | translate }}</div>
+
+  <div class="grid my-grid">
+    <div class="card vrow" *ngFor="let v of vehicles">
+      <div class="vrow-info">
+        <h3>{{ v.brand }} {{ v.model }} <span class="badge" [ngClass]="statusClass(v.status)">{{ v.status }}</span></h3>
+        <div class="text-muted">{{ v.year }} · {{ v.location }} · $ {{ v.price | number }}</div>
+      </div>
+      <div class="vrow-actions">
+        <button class="btn btn-ghost" *ngIf="v.status==='PENDING'" (click)="requestInspection(v)">
+          <i class="fa-solid fa-clipboard-check"></i> {{ 'REQUEST_INSPECTION' | translate }}
+        </button>
+        <button class="btn btn-ghost danger" (click)="del(v)"><i class="fa-solid fa-trash"></i></button>
+      </div>
+    </div>
+  </div>
+</div>

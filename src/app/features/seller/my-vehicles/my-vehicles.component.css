@@ -1,0 +1,10 @@
+.my-page { padding: 32px 20px 60px; }
+.my-head { display:flex; justify-content:space-between; align-items:center; margin-bottom:24px; flex-wrap:wrap; gap:12px; }
+.my-head h1 { margin:0; }
+.my-grid { grid-template-columns: 1fr; }
+.vrow { padding: 20px 24px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; }
+.vrow-info h3 { margin:0 0 4px; display:flex; align-items:center; gap:10px; }
+.vrow-actions { display:flex; gap:10px; }
+.btn-ghost.danger { color: var(--c-danger); border-color:#f3c2c2; }
+.info-msg { background:#e3f2fd;color:var(--c-primary);padding:12px 16px;border-radius:8px;margin-bottom:16px; }
+.empty { text-align:center; padding:50px; color:var(--c-muted); }

@@ -1,0 +1,12 @@
+.mech-page { padding: 32px 20px 60px; max-width: 800px; }
+.mech-page h1 { margin:0 0 4px; }
+.insp { padding: 22px 24px; margin-bottom: 16px; }
+.insp-head { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:14px; }
+.insp-head h3 { margin:0; display:flex; align-items:center; gap:10px; }
+.insp-form { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+.insp-form .field { margin-bottom:0; }
+.insp-actions { display:flex; gap:10px; grid-column:1/-1; margin-top:6px; }
+.btn-ghost.danger { color:var(--c-danger); border-color:#f3c2c2; }
+.info-msg { background:#e8f5e9;color:var(--c-success);padding:12px 16px;border-radius:8px;margin-bottom:16px; }
+.empty { text-align:center; padding:50px; color:var(--c-muted); }
+@media (max-width:600px){ .insp-form { grid-template-columns:1fr; } }

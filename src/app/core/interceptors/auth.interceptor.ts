@@ -24,7 +24,9 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
 
   return next(authReq).pipe(
     catchError((error: HttpErrorResponse) => {
-      if (error.status === 401 || error.status === 403) {
+      // Solo cerrar sesión si el token es inválido/expirado (401).
+      // Un 403 (sin permiso para un recurso puntual) NO debe cerrar la sesión.
+      if (error.status === 401) {
         authService.logout();
         router.navigate(['/login']);
       }
