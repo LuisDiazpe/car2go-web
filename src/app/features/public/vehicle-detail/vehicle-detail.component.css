@@ -11,3 +11,6 @@
 .vd-specs b { font-size: 16px; }
 .vd-fav-msg { margin-top: 12px; padding: 10px 14px; background: #e3f2fd; color: var(--c-primary); border-radius: 8px; }
 @media (max-width: 800px) { .vd-grid { grid-template-columns: 1fr; } .vd-image { min-height: 260px; } }
+
+.vd-buy-note { margin-top:12px; padding:10px 14px; background:#fff3e0; color:#e65100; border-radius:8px; font-size:14px; }
+.vd-actions { display:flex; gap:12px; flex-wrap:wrap; }

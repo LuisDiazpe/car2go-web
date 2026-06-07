@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink, Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { VehicleService } from '../../../core/services/vehicle.service';
 import { FavoriteService } from '../../../core/services/favorite.service';
@@ -21,6 +21,7 @@ export class VehicleDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private vehicleService: VehicleService,
     private favoriteService: FavoriteService,
     public auth: AuthService
@@ -35,6 +36,12 @@ export class VehicleDetailComponent implements OnInit {
   }
 
   get isBuyer() { return this.auth.hasRole('ROLE_BUYER'); }
+
+  buy() {
+    if (this.vehicle?.id) {
+      this.router.navigate(['/buyer/checkout', this.vehicle.id]);
+    }
+  }
 
   addFavorite() {
     if (!this.vehicle?.id) return;
