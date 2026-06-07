@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { InspectionService } from '../../../core/services/inspection.service';
-import { VehicleService } from '../../../core/services/vehicle.service';
 import { Inspection } from '../../../core/models/inspection.model';
 
 @Component({
@@ -14,10 +13,12 @@ import { Inspection } from '../../../core/models/inspection.model';
   styleUrls: ['./pending.component.css']
 })
 export class PendingComponent implements OnInit {
-  inspections: Inspection[] = [];
+  pending: Inspection[] = [];      // PENDING (para asignarse)
+  assigned: Inspection[] = [];     // IN_PROGRESS (mías, para aprobar/rechazar)
   loading = true;
   message = '';
-  // formulario de aprobación por inspección
+  tab: 'pending' | 'assigned' = 'pending';   // pestaña activa
+
   notes: { [id: number]: string } = {};
   cert: { [id: number]: string } = {};
 
@@ -27,16 +28,23 @@ export class PendingComponent implements OnInit {
 
   load() {
     this.loading = true;
+    // Cargar ambas listas
     this.inspectionService.getPending().subscribe({
-      next: (i) => { this.inspections = i; this.loading = false; },
+      next: (i) => { this.pending = i; this.loading = false; },
       error: () => { this.loading = false; }
     });
+    this.inspectionService.getAssigned().subscribe({
+      next: (i) => { this.assigned = i; },
+      error: () => {}
+    });
   }
+
+  setTab(t: 'pending' | 'assigned') { this.tab = t; this.message = ''; }
 
   assign(insp: Inspection) {
     if (!insp.id) return;
     this.inspectionService.assign(insp.id).subscribe({
-      next: () => { this.message = 'ASSIGNED_OK'; this.load(); },
+      next: () => { this.message = 'ASSIGNED_OK'; this.tab = 'assigned'; this.load(); },
       error: () => this.message = 'ACTION_ERROR'
     });
   }

@@ -321,5 +321,8 @@
   "SECURE_PAYMENT": "Pago seguro y protegido",
   "NO_PURCHASES": "No tienes compras todavía",
   "TRANSACTION": "Transacción",
-  "FILL_REQUIRED": "Por favor completa todos los campos obligatorios"
+  "FILL_REQUIRED": "Por favor completa todos los campos obligatorios",
+  "MECHANIC_PANEL": "Panel del mecánico",
+  "MY_ASSIGNED": "Mis asignadas",
+  "NO_ASSIGNED": "No tienes inspecciones asignadas. Asígnate una desde 'Pendientes'."
 }

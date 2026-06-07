@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { environment } from '../../../environments/environment';
 import { Favorite } from '../models/transaction.model';
 
 @Injectable({ providedIn: 'root' })
 export class FavoriteService {
-  private readonly api = `${environment.apiBaseUrl}/favorites`;
+  private readonly api = `API:/favorites`;
   constructor(private http: HttpClient) {}
 
   getMyFavorites(): Observable<Favorite[]> { return this.http.get<Favorite[]>(this.api); }
