@@ -8,6 +8,7 @@
         <span class="prof-avg">{{ reviewSummary.average }} / 5</span>
         <span class="prof-count">({{ reviewSummary.count }} {{ 'REVIEWS' | translate }})</span>
       </div>
+      <app-trust-badge [average]="reviewSummary.average" [count]="reviewSummary.count"></app-trust-badge>
     </div>
   </div>
 

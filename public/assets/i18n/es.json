@@ -351,5 +351,19 @@
   "COMMENT_ERROR": "Error al enviar el comentario",
   "NO_COMMENTS": "Aún no hay comentarios",
   "SELLER_REVIEWS": "Ver reseñas del vendedor",
-  "ONLY_REVIEWED_BUYABLE": "Solo puedes comprar autos inspeccionados y aprobados (REVIEWED)."
+  "ONLY_REVIEWED_BUYABLE": "Solo puedes comprar autos inspeccionados y aprobados (REVIEWED).",
+  "TRUST_NEW": "Nuevo",
+  "TRUST_LOW": "Reputación baja",
+  "TRUST_OK": "Confiable",
+  "TRUST_GOOD": "Muy confiable",
+  "TRUST_EXCELLENT": "Excelente",
+  "ROLE_SELLER_LABEL": "Vendedor",
+  "ROLE_MECHANIC_LABEL": "Mecánico",
+  "ROLE_BUYER_LABEL": "Comprador",
+  "TRUST_RANKING": "Más recomendados",
+  "TRUST_RANKING_SUB": "Vendedores y mecánicos mejor valorados por la comunidad",
+  "TOP_SELLERS": "Mejores vendedores",
+  "TOP_MECHANICS": "Mejores mecánicos",
+  "NO_RANKING": "Aún no hay datos suficientes para el ranking",
+  "USER": "Usuario"
 }

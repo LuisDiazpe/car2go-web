@@ -9,6 +9,7 @@
     <nav class="tb-nav" [class.open]="menuOpen">
       <a routerLink="/home" (click)="menuOpen=false">{{ 'HOME' | translate }}</a>
       <a routerLink="/catalog" (click)="menuOpen=false">{{ 'CAR_LISTING' | translate }}</a>
+      <a routerLink="/ranking" (click)="menuOpen=false">{{ 'TRUST_RANKING' | translate }}</a>
 
       <ng-container *ngIf="isSeller">
         <a routerLink="/seller/my-vehicles" (click)="menuOpen=false">{{ 'MY_CARS' | translate }}</a>

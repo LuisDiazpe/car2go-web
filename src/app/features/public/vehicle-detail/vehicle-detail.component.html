@@ -25,6 +25,7 @@
         <a class="btn btn-ghost" [routerLink]="['/user', vehicle.sellerProfileId]" *ngIf="vehicle.sellerProfileId">
           <i class="fa-solid fa-star"></i> {{ 'SELLER_REVIEWS' | translate }}
         </a>
+        <app-trust-badge [average]="sellerTrust.average" [count]="sellerTrust.count" [role]="'ROLE_SELLER'"></app-trust-badge>
       </div>
       <div class="vd-buy-note" *ngIf="isBuyer && vehicle.status !== 'REVIEWED'">
         <i class="fa-solid fa-circle-info"></i> {{ 'ONLY_REVIEWED_BUYABLE' | translate }}
