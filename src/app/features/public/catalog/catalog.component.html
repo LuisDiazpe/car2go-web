@@ -3,12 +3,63 @@
     <h1>{{ 'CAR_LISTING' | translate }}</h1>
     <div class="cat-search">
       <i class="fa-solid fa-magnifying-glass"></i>
-      <input [(ngModel)]="search" [ngModelOptions]="{standalone:true}" placeholder="{{ 'SEARCH_PLACEHOLDER' | translate }}">
+      <input [(ngModel)]="search" placeholder="{{ 'SEARCH_PLACEHOLDER' | translate }}">
+    </div>
+  </div>
+
+  <!-- Botón para mostrar/ocultar filtros -->
+  <div class="filter-bar">
+    <button class="btn btn-ghost" (click)="showFilters = !showFilters">
+      <i class="fa-solid fa-sliders"></i> {{ 'FILTERS' | translate }}
+      <span class="filter-count" *ngIf="activeFilterCount > 0">{{ activeFilterCount }}</span>
+    </button>
+    <button class="btn btn-ghost clear" *ngIf="activeFilterCount > 0 || search" (click)="clearFilters()">
+      <i class="fa-solid fa-xmark"></i> {{ 'CLEAR_FILTERS' | translate }}
+    </button>
+    <span class="result-count">{{ filtered.length }} {{ 'RESULTS' | translate }}</span>
+  </div>
+
+  <!-- Panel de filtros avanzados -->
+  <div class="filters-panel card" *ngIf="showFilters">
+    <div class="filters-grid">
+      <div class="field">
+        <label>{{ 'BRAND' | translate }}</label>
+        <input [(ngModel)]="filterBrand" placeholder="Toyota, Honda...">
+      </div>
+      <div class="field">
+        <label>{{ 'FUEL' | translate }}</label>
+        <select [(ngModel)]="filterFuel">
+          <option value="">{{ 'ALL' | translate }}</option>
+          <option *ngFor="let f of fuelOptions" [value]="f">{{ f }}</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>{{ 'LOCATION' | translate }}</label>
+        <select [(ngModel)]="filterLocation">
+          <option value="">{{ 'ALL' | translate }}</option>
+          <option *ngFor="let l of locationOptions" [value]="l">{{ l }}</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>{{ 'MIN_PRICE' | translate }} (USD)</label>
+        <input type="number" [(ngModel)]="minPrice" placeholder="0">
+      </div>
+      <div class="field">
+        <label>{{ 'MAX_PRICE' | translate }} (USD)</label>
+        <input type="number" [(ngModel)]="maxPrice" placeholder="100000">
+      </div>
+      <div class="field">
+        <label>{{ 'MIN_YEAR' | translate }}</label>
+        <input type="number" [(ngModel)]="minYear" placeholder="2010">
+      </div>
+      <div class="field">
+        <label>{{ 'MAX_YEAR' | translate }}</label>
+        <input type="number" [(ngModel)]="maxYear" placeholder="2025">
+      </div>
     </div>
   </div>
 
   <div *ngIf="loading" class="cat-loading"><i class="fa-solid fa-spinner fa-spin"></i> {{ 'LOADING' | translate }}</div>
-
   <div *ngIf="!loading && filtered.length === 0" class="cat-empty">{{ 'NO_VEHICLES' | translate }}</div>
 
   <div class="grid cat-grid">

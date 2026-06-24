@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
-import { environment } from '../../../environments/environment';
 import { SignInRequest, SignInResponse, SignUpRequest, CurrentUser } from '../models/user.model';
 
 /**
@@ -14,7 +13,7 @@ import { SignInRequest, SignInResponse, SignUpRequest, CurrentUser } from '../mo
  */
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private readonly api = `${environment.apiBaseUrl}/auth`;
+  private readonly api = `API:/auth`;
   private token: string | null = null;
 
   private currentUserSubject = new BehaviorSubject<CurrentUser | null>(null);

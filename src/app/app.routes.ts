@@ -10,6 +10,7 @@ export const routes: Routes = [
   { path: 'register', loadComponent: () => import('./features/auth/register/register.component').then(m => m.RegisterComponent) },
   { path: 'catalog', loadComponent: () => import('./features/public/catalog/catalog.component').then(m => m.CatalogComponent) },
   { path: 'vehicle/:id', loadComponent: () => import('./features/public/vehicle-detail/vehicle-detail.component').then(m => m.VehicleDetailComponent) },
+  { path: 'user/:id', loadComponent: () => import('./features/profile/profile.component').then(m => m.ProfileComponent) },
 
   // Vendedor (ROLE_SELLER)
   { path: 'seller/publish', canActivate: [roleGuard], data: { role: 'ROLE_SELLER' }, loadComponent: () => import('./features/seller/publish/publish.component').then(m => m.PublishComponent) },

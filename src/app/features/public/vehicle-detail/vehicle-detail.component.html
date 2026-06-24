@@ -18,7 +18,16 @@
       </div>
 
       <div class="vd-actions" *ngIf="isBuyer">
+        <button class="btn btn-primary" (click)="buy()" *ngIf="vehicle.status === 'REVIEWED'">
+          <i class="fa-solid fa-cart-shopping"></i> {{ 'BUY' | translate }}
+        </button>
         <button class="btn btn-accent" (click)="addFavorite()"><i class="fa-solid fa-heart"></i> {{ 'ADD_FAVORITE' | translate }}</button>
+        <a class="btn btn-ghost" [routerLink]="['/user', vehicle.sellerProfileId]" *ngIf="vehicle.sellerProfileId">
+          <i class="fa-solid fa-star"></i> {{ 'SELLER_REVIEWS' | translate }}
+        </a>
+      </div>
+      <div class="vd-buy-note" *ngIf="isBuyer && vehicle.status !== 'REVIEWED'">
+        <i class="fa-solid fa-circle-info"></i> {{ 'ONLY_REVIEWED_BUYABLE' | translate }}
       </div>
       <div class="vd-fav-msg" *ngIf="favMessage">{{ favMessage | translate }}</div>
     </div>

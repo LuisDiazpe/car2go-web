@@ -1,0 +1,65 @@
+<div class="container profile">
+  <div class="prof-header card">
+    <div class="prof-avatar"><i class="fa-solid fa-user"></i></div>
+    <div class="prof-info">
+      <h1>{{ 'USER_PROFILE' | translate }} #{{ targetId }}</h1>
+      <div class="prof-rating">
+        <app-star-rating [value]="reviewSummary.average"></app-star-rating>
+        <span class="prof-avg">{{ reviewSummary.average }} / 5</span>
+        <span class="prof-count">({{ reviewSummary.count }} {{ 'REVIEWS' | translate }})</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="info-msg" *ngIf="message">{{ message | translate }}</div>
+
+  <div class="tabs">
+    <button [class.active]="tab==='reviews'" (click)="tab='reviews'">{{ 'REVIEWS' | translate }} <span class="count">{{ reviewSummary.count }}</span></button>
+    <button [class.active]="tab==='comments'" (click)="tab='comments'">{{ 'COMMENTS' | translate }} <span class="count">{{ comments.length }}</span></button>
+  </div>
+
+  <!-- RESEÑAS -->
+  <div *ngIf="tab==='reviews'">
+    <!-- dejar reseña -->
+    <div class="card review-form" *ngIf="isLoggedIn">
+      <h3>{{ 'LEAVE_REVIEW' | translate }}</h3>
+      <div class="star-input">
+        <i class="fa-solid fa-star" *ngFor="let n of [1,2,3,4,5]"
+           [class.on]="n <= newRating" (click)="setStars(n)"></i>
+        <span class="star-num">{{ newRating }} / 5</span>
+      </div>
+      <textarea [(ngModel)]="newReviewComment" rows="2" placeholder="{{ 'REVIEW_PLACEHOLDER' | translate }}"></textarea>
+      <div class="auth-error" *ngIf="error">{{ error | translate }}</div>
+      <button class="btn btn-primary" (click)="sendReview()">{{ 'SUBMIT_REVIEW' | translate }}</button>
+      <p class="hint text-muted">{{ 'REVIEW_HINT' | translate }}</p>
+    </div>
+
+    <div *ngIf="loading" class="empty"><i class="fa-solid fa-spinner fa-spin"></i> {{ 'LOADING' | translate }}</div>
+    <div *ngIf="!loading && reviewSummary.reviews.length===0" class="empty">{{ 'NO_REVIEWS' | translate }}</div>
+
+    <div class="card review-item" *ngFor="let r of reviewSummary.reviews">
+      <div class="review-top">
+        <strong><i class="fa-solid fa-user-circle"></i> {{ r.authorUsername }}</strong>
+        <app-star-rating [value]="r.rating"></app-star-rating>
+      </div>
+      <p *ngIf="r.comment">{{ r.comment }}</p>
+      <span class="review-date text-muted" *ngIf="r.createdAt">{{ r.createdAt | date:'short' }}</span>
+    </div>
+  </div>
+
+  <!-- COMENTARIOS -->
+  <div *ngIf="tab==='comments'">
+    <div class="card review-form" *ngIf="isLoggedIn">
+      <h3>{{ 'LEAVE_COMMENT' | translate }}</h3>
+      <textarea [(ngModel)]="newComment" rows="2" placeholder="{{ 'COMMENT_PLACEHOLDER' | translate }}"></textarea>
+      <button class="btn btn-primary" (click)="sendComment()">{{ 'SUBMIT_COMMENT' | translate }}</button>
+    </div>
+
+    <div *ngIf="comments.length===0" class="empty">{{ 'NO_COMMENTS' | translate }}</div>
+    <div class="card comment-item" *ngFor="let c of comments">
+      <strong><i class="fa-solid fa-user-circle"></i> {{ c.authorUsername }}</strong>
+      <p>{{ c.content }}</p>
+      <span class="review-date text-muted" *ngIf="c.createdAt">{{ c.createdAt | date:'short' }}</span>
+    </div>
+  </div>
+</div>

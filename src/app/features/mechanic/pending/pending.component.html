@@ -1,25 +1,43 @@
 <div class="container mech-page">
-  <h1>{{ 'PENDING_INSPECTIONS' | translate }}</h1>
+  <h1>{{ 'MECHANIC_PANEL' | translate }}</h1>
   <p class="text-muted">{{ 'MECHANIC_SUBTITLE' | translate }}</p>
+
+  <!-- Pestañas -->
+  <div class="tabs">
+    <button [class.active]="tab==='pending'" (click)="setTab('pending')">
+      {{ 'PENDING_INSPECTIONS' | translate }} <span class="count">{{ pending.length }}</span>
+    </button>
+    <button [class.active]="tab==='assigned'" (click)="setTab('assigned')">
+      {{ 'MY_ASSIGNED' | translate }} <span class="count">{{ assigned.length }}</span>
+    </button>
+  </div>
 
   <div class="info-msg" *ngIf="message">{{ message | translate }}</div>
   <div *ngIf="loading" class="empty"><i class="fa-solid fa-spinner fa-spin"></i> {{ 'LOADING' | translate }}</div>
-  <div *ngIf="!loading && inspections.length===0" class="empty">{{ 'NO_PENDING' | translate }}</div>
 
-  <div class="grid">
-    <div class="card insp" *ngFor="let i of inspections">
+  <!-- PESTAÑA: PENDIENTES (para asignarse) -->
+  <div *ngIf="tab==='pending' && !loading">
+    <div *ngIf="pending.length===0" class="empty">{{ 'NO_PENDING' | translate }}</div>
+    <div class="card insp" *ngFor="let i of pending">
       <div class="insp-head">
         <h3>{{ 'INSPECTION' | translate }} #{{ i.id }} <span class="badge" [ngClass]="statusClass(i.status)">{{ i.status }}</span></h3>
         <span class="text-muted">{{ 'VEHICLE_ID' | translate }}: {{ i.vehicleId }}</span>
       </div>
-
-      <!-- Si está PENDING: botón asignarse -->
-      <div *ngIf="i.status==='PENDING'" class="insp-actions">
+      <div class="insp-actions">
         <button class="btn btn-primary" (click)="assign(i)"><i class="fa-solid fa-hand"></i> {{ 'ASSIGN_TO_ME' | translate }}</button>
       </div>
+    </div>
+  </div>
 
-      <!-- Si está IN_PROGRESS: formulario aprobar/rechazar -->
-      <div *ngIf="i.status==='IN_PROGRESS'" class="insp-form">
+  <!-- PESTAÑA: MIS ASIGNADAS (para aprobar/rechazar) -->
+  <div *ngIf="tab==='assigned' && !loading">
+    <div *ngIf="assigned.length===0" class="empty">{{ 'NO_ASSIGNED' | translate }}</div>
+    <div class="card insp" *ngFor="let i of assigned">
+      <div class="insp-head">
+        <h3>{{ 'INSPECTION' | translate }} #{{ i.id }} <span class="badge" [ngClass]="statusClass(i.status)">{{ i.status }}</span></h3>
+        <span class="text-muted">{{ 'VEHICLE_ID' | translate }}: {{ i.vehicleId }}</span>
+      </div>
+      <div class="insp-form">
         <div class="field"><label>{{ 'NOTES' | translate }}</label>
           <input [(ngModel)]="notes[i.id!]" placeholder="{{ 'NOTES_PLACEHOLDER' | translate }}"></div>
         <div class="field"><label>{{ 'CERTIFICATE' | translate }}</label>

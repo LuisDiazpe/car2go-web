@@ -1,0 +1,33 @@
+.profile { padding: 32px 20px 60px; max-width: 800px; }
+.prof-header { display: flex; align-items: center; gap: 20px; padding: 24px; margin-bottom: 24px; }
+.prof-avatar { width: 70px; height: 70px; border-radius: 50%; background: var(--c-primary); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 30px; }
+.prof-info h1 { margin: 0 0 8px; font-size: 24px; }
+.prof-rating { display: flex; align-items: center; gap: 10px; }
+.prof-avg { font-family: 'Sora'; font-weight: 700; font-size: 18px; color: var(--c-ink); }
+.prof-count { color: var(--c-muted); font-size: 14px; }
+
+.tabs { display: flex; gap: 8px; margin-bottom: 20px; border-bottom: 2px solid var(--c-border); }
+.tabs button { background: none; border: none; padding: 12px 20px; font-family: 'Sora'; font-weight: 600; font-size: 15px; color: var(--c-muted); cursor: pointer; border-bottom: 3px solid transparent; margin-bottom: -2px; }
+.tabs button.active { color: var(--c-primary); border-bottom-color: var(--c-primary); }
+.tabs .count { background: var(--c-border); border-radius: 999px; padding: 1px 8px; font-size: 12px; margin-left: 4px; }
+.tabs button.active .count { background: var(--c-primary); color: #fff; }
+
+.review-form { padding: 20px 24px; margin-bottom: 20px; }
+.review-form h3 { margin: 0 0 14px; }
+.review-form textarea { width: 100%; padding: 12px 14px; border: 1.5px solid var(--c-border); border-radius: 10px; font-family: 'Outfit'; font-size: 15px; margin-bottom: 12px; resize: vertical; }
+.review-form textarea:focus { outline: none; border-color: var(--c-primary); }
+.star-input { display: flex; align-items: center; gap: 6px; margin-bottom: 14px; font-size: 26px; color: #d8d8d8; cursor: pointer; }
+.star-input i { transition: color .15s, transform .15s; }
+.star-input i.on { color: #f5a623; }
+.star-input i:hover { transform: scale(1.15); }
+.star-num { font-size: 15px; color: var(--c-muted); margin-left: 8px; font-family: 'Sora'; }
+.hint { font-size: 13px; margin-top: 8px; }
+.auth-error { background: #ffebee; color: var(--c-danger); padding: 10px 14px; border-radius: 8px; margin-bottom: 12px; font-size: 14px; }
+
+.review-item, .comment-item { padding: 18px 22px; margin-bottom: 12px; }
+.review-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; flex-wrap: wrap; gap: 8px; }
+.review-item p, .comment-item p { margin: 8px 0; }
+.review-date { font-size: 12px; }
+.comment-item strong, .review-top strong { color: var(--c-ink); }
+.info-msg { background: #e8f5e9; color: var(--c-success); padding: 12px 16px; border-radius: 8px; margin-bottom: 16px; }
+.empty { text-align: center; padding: 40px; color: var(--c-muted); }
