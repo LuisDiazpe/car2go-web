@@ -6,11 +6,13 @@ import { VehicleService } from '../../../core/services/vehicle.service';
 import { FavoriteService } from '../../../core/services/favorite.service';
 import { AuthService } from '../../../core/services/auth.service';
 import { Vehicle } from '../../../core/models/vehicle.model';
+import { TrustBadgeComponent } from '../../../shared/trust-badge/trust-badge.component';
+import { SocialService } from '../../../core/services/social.service';
 
 @Component({
   selector: 'app-vehicle-detail',
   standalone: true,
-  imports: [CommonModule, RouterLink, TranslateModule],
+  imports: [CommonModule, RouterLink, TranslateModule, TrustBadgeComponent],
   templateUrl: './vehicle-detail.component.html',
   styleUrls: ['./vehicle-detail.component.css']
 })
@@ -18,19 +20,27 @@ export class VehicleDetailComponent implements OnInit {
   vehicle?: Vehicle;
   loading = true;
   favMessage = '';
+  sellerTrust = { average: 0, count: 0}
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private vehicleService: VehicleService,
     private favoriteService: FavoriteService,
-    public auth: AuthService
+    public auth: AuthService,
+    private social: SocialService
   ) {}
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.vehicleService.getById(id).subscribe({
-      next: (v) => { this.vehicle = v; this.loading = false; },
+      next: (v) => { this.vehicle = v; this.loading = false;
+        if (this.vehicle?.sellerProfileId) {
+          this.social.getReviews(this.vehicle.sellerProfileId).subscribe({
+            next: (r) => this.sellerTrust = { average: r.average, count: r.count },
+            error: () => {}
+          });
+        } },
       error: () => { this.loading = false; }
     });
   }

@@ -1,0 +1,21 @@
+.ranking { padding: 32px 20px 60px; max-width: 800px; }
+.rank-head { text-align: center; margin-bottom: 28px; }
+.rank-head h1 { margin: 0 0 8px; }
+.tabs { display: flex; gap: 8px; margin-bottom: 24px; justify-content: center; }
+.tabs button { background: var(--c-surface, #fff); border: 1.5px solid var(--c-border); padding: 10px 22px;
+  font-family: 'Sora'; font-weight: 600; font-size: 15px; color: var(--c-muted); cursor: pointer; border-radius: 999px; }
+.tabs button.active { color: #fff; background: var(--c-primary); border-color: var(--c-primary); }
+.rank-list { display: flex; flex-direction: column; gap: 12px; }
+.rank-card { display: flex; align-items: center; gap: 18px; padding: 16px 20px; text-decoration: none; color: inherit;
+  transition: transform .15s, box-shadow .15s; }
+.rank-card:hover { transform: translateX(4px); box-shadow: var(--shadow-lg); }
+.rank-pos { font-size: 28px; min-width: 44px; text-align: center; font-weight: 700; font-family: 'Sora'; }
+.rank-info { flex: 1; }
+.rank-info h3 { margin: 0 0 6px; font-size: 18px; }
+.rank-stars { display: flex; align-items: center; gap: 10px; }
+.rank-count { color: var(--c-muted); font-size: 13px; }
+.empty { text-align: center; padding: 50px; color: var(--c-muted); }
+@media (max-width: 600px) {
+  .rank-card { flex-wrap: wrap; }
+  .rank-badge { width: 100%; }
+}

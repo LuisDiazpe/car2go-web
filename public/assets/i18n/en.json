@@ -351,5 +351,19 @@
   "COMMENT_ERROR": "Error sending the comment",
   "NO_COMMENTS": "No comments yet",
   "SELLER_REVIEWS": "See seller reviews",
-  "ONLY_REVIEWED_BUYABLE": "You can only buy inspected and approved cars (REVIEWED)."
+  "ONLY_REVIEWED_BUYABLE": "You can only buy inspected and approved cars (REVIEWED).",
+  "TRUST_NEW": "New",
+  "TRUST_LOW": "Low reputation",
+  "TRUST_OK": "Trusted",
+  "TRUST_GOOD": "Very trusted",
+  "TRUST_EXCELLENT": "Excellent",
+  "ROLE_SELLER_LABEL": "Seller",
+  "ROLE_MECHANIC_LABEL": "Mechanic",
+  "ROLE_BUYER_LABEL": "Buyer",
+  "TRUST_RANKING": "Top rated",
+  "TRUST_RANKING_SUB": "Sellers and mechanics best rated by the community",
+  "TOP_SELLERS": "Top sellers",
+  "TOP_MECHANICS": "Top mechanics",
+  "NO_RANKING": "Not enough data for the ranking yet",
+  "USER": "User"
 }

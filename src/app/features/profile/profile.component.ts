@@ -6,11 +6,12 @@ import { TranslateModule } from '@ngx-translate/core';
 import { StarRatingComponent } from '../../shared/star-rating/star-rating.component';
 import { SocialService, Comment, ReviewSummary } from '../../core/services/social.service';
 import { AuthService } from '../../core/services/auth.service';
+import { TrustBadgeComponent } from '../../shared/trust-badge/trust-badge.component';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [CommonModule, FormsModule, TranslateModule, StarRatingComponent],
+  imports: [CommonModule, FormsModule, TranslateModule, StarRatingComponent, TrustBadgeComponent],
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
