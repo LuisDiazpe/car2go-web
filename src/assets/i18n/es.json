@@ -324,5 +324,11 @@
   "FILL_REQUIRED": "Por favor completa todos los campos obligatorios",
   "MECHANIC_PANEL": "Panel del mecánico",
   "MY_ASSIGNED": "Mis asignadas",
-  "NO_ASSIGNED": "No tienes inspecciones asignadas. Asígnate una desde 'Pendientes'."
+  "NO_ASSIGNED": "No tienes inspecciones asignadas. Asígnate una desde 'Pendientes'.",
+  "ONLY_REVIEWED_BUYABLE": "Solo puedes comprar autos inspeccionados y aprobados (REVIEWED).",
+  "VEHICLE_PHOTO": "Foto del vehículo",
+  "SELECT_IMAGE": "Seleccionar imagen",
+  "NO_IMAGE_SELECTED": "Ninguna imagen seleccionada (opcional)",
+  "UPLOADING_IMAGE": "Subiendo imagen...",
+  "IMAGE_UPLOAD_ERROR": "Error al subir la imagen"
 }

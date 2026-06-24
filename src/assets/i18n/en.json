@@ -324,5 +324,11 @@
   "FILL_REQUIRED": "Please fill in all required fields",
   "MECHANIC_PANEL": "Mechanic panel",
   "MY_ASSIGNED": "My assigned",
-  "NO_ASSIGNED": "You have no assigned inspections. Assign one from 'Pending'."
+  "NO_ASSIGNED": "You have no assigned inspections. Assign one from 'Pending'.",
+  "ONLY_REVIEWED_BUYABLE": "You can only buy inspected and approved cars (REVIEWED).",
+  "VEHICLE_PHOTO": "Vehicle photo",
+  "SELECT_IMAGE": "Select image",
+  "NO_IMAGE_SELECTED": "No image selected (optional)",
+  "UPLOADING_IMAGE": "Uploading image...",
+  "IMAGE_UPLOAD_ERROR": "Error uploading the image"
 }

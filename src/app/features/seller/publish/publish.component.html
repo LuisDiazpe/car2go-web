@@ -21,7 +21,19 @@
       <div class="field"><label>{{ 'FUEL' | translate }}</label>
         <select formControlName="fuel"><option>Gasolina</option><option>Diesel</option><option>Electrico</option><option>Hibrido</option></select></div>
       <div class="field"><label>{{ 'TOP_SPEED' | translate }} (km/h)</label><input type="number" formControlName="topSpeed" placeholder="180"></div>
-      <div class="field full"><label>{{ 'IMAGE_URL' | translate }}</label><input formControlName="images" placeholder="https://..."></div>
+      <div class="field full">
+        <label>{{ 'VEHICLE_PHOTO' | translate }}</label>
+        <div class="img-upload">
+          <input type="file" accept="image/*" (change)="onFileSelected($event)" id="fileInput" hidden>
+          <label for="fileInput" class="img-upload-btn">
+            <i class="fa-solid fa-cloud-arrow-up"></i> {{ 'SELECT_IMAGE' | translate }}
+          </label>
+          <div class="img-preview" *ngIf="previewUrl">
+            <img [src]="previewUrl" alt="preview">
+          </div>
+          <span class="text-muted" *ngIf="!previewUrl">{{ 'NO_IMAGE_SELECTED' | translate }}</span>
+        </div>
+      </div>
       <div class="field full"><label>{{ 'DESCRIPTION' | translate }}</label><textarea formControlName="description" rows="3"></textarea></div>
       <div class="field"><label>{{ 'CONTACT_NAME' | translate }}</label><input formControlName="contactName"></div>
       <div class="field"><label>{{ 'CONTACT_PHONE' | translate }}</label><input formControlName="contactPhone"></div>
@@ -30,6 +42,6 @@
 
     <div class="auth-error" *ngIf="error">{{ error | translate }}</div>
     <div class="auth-error" *ngIf="form.invalid && form.touched">{{ 'FILL_REQUIRED' | translate }}</div>
-    <button class="btn btn-primary" type="submit" [disabled]="loading">{{ loading ? ('LOADING'|translate) : ('PUBLISH'|translate) }}</button>
+    <button class="btn btn-primary" type="submit" [disabled]="loading">{{ uploading ? ('UPLOADING_IMAGE'|translate) : (loading ? ('LOADING'|translate) : ('PUBLISH'|translate)) }}</button>
   </form>
 </div>
