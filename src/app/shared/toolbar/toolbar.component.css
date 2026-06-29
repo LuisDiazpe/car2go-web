@@ -1,19 +1,38 @@
 .tb { background: var(--c-ink); position: sticky; top: 0; z-index: 100; }
-.tb-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; }
-.tb-logo { color: #fff; text-decoration: none; font-family: 'Sora'; font-weight: 800; font-size: 22px; letter-spacing: 1px; display: flex; align-items: center; gap: 8px; }
+.tb-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 16px; }
+
+.tb-logo { color: #fff; text-decoration: none; font-family: 'Sora'; font-weight: 800; font-size: 22px; letter-spacing: 1px; display: flex; align-items: center; gap: 8px; white-space: nowrap; flex-shrink: 0; }
 .tb-logo i { color: var(--c-accent); }
 .tb-logo b { color: var(--c-accent); }
-.tb-nav { display: flex; align-items: center; gap: 22px; }
-.tb-nav a { color: #c7d2e0; text-decoration: none; font-weight: 500; font-size: 15px; transition: color .2s; }
+
+/* Navegación: permite que los enlaces se acomoden y nunca se partan en 2 líneas */
+.tb-nav { display: flex; align-items: center; gap: 18px; flex-wrap: nowrap; }
+.tb-nav a { color: #c7d2e0; text-decoration: none; font-weight: 500; font-size: 14px; transition: color .2s; white-space: nowrap; }
 .tb-nav a:hover { color: #fff; }
-.tb-cta { background: var(--c-accent); color: var(--c-ink) !important; padding: 8px 16px; border-radius: 8px; font-weight: 600; }
-.tb-user { color: var(--c-accent); font-weight: 600; font-size: 14px; }
-.tb-lang { display: flex; gap: 4px; }
+
+.tb-cta { background: var(--c-accent); color: var(--c-ink) !important; padding: 8px 14px; border-radius: 8px; font-weight: 600; white-space: nowrap; flex-shrink: 0; }
+
+/* Usuario: en una sola línea, icono al lado del nombre, sin montarse */
+.tb-user { color: var(--c-accent); font-weight: 600; font-size: 14px; white-space: nowrap; display: inline-flex; align-items: center; gap: 6px; }
+
+.tb-lang { display: flex; gap: 4px; flex-shrink: 0; }
 .tb-lang button { background: transparent; border: 1px solid #3a4658; color: #c7d2e0; border-radius: 6px; padding: 4px 8px; cursor: pointer; font-size: 12px; font-weight: 600; }
 .tb-lang button.active { background: var(--c-accent); color: var(--c-ink); border-color: var(--c-accent); }
+
 .tb-burger { display: none; background: transparent; border: none; color: #fff; font-size: 22px; cursor: pointer; }
-@media (max-width: 900px) {
+
+/* Breakpoint subido a 1100px: en español el menú pasa a hamburguesa antes
+   de que los textos largos se amontonen. */
+@media (max-width: 1100px) {
   .tb-burger { display: block; }
-  .tb-nav { position: absolute; top: 64px; left: 0; right: 0; background: var(--c-ink); flex-direction: column; align-items: flex-start; padding: 16px 20px; gap: 14px; display: none; }
+  .tb-nav {
+    position: absolute; top: 64px; left: 0; right: 0;
+    background: var(--c-ink); flex-direction: column; align-items: flex-start;
+    padding: 16px 20px; gap: 16px; display: none;
+    box-shadow: 0 8px 16px rgba(0,0,0,.3);
+  }
   .tb-nav.open { display: flex; }
+  /* En el menú desplegable, el usuario y el botón ocupan su línea completa */
+  .tb-user { font-size: 15px; }
+  .tb-cta { display: inline-block; }
 }

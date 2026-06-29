@@ -5,11 +5,12 @@ import { FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { VehicleService } from '../../../core/services/vehicle.service';
 import { Vehicle } from '../../../core/models/vehicle.model';
+import { FuelPipe } from '../../../shared/pipes/fuel.pipe';
 
 @Component({
   selector: 'app-catalog',
   standalone: true,
-  imports: [CommonModule, RouterLink, FormsModule, TranslateModule],
+  imports: [CommonModule, RouterLink, FormsModule, TranslateModule, FormsModule, FuelPipe],
   templateUrl: './catalog.component.html',
   styleUrls: ['./catalog.component.css']
 })

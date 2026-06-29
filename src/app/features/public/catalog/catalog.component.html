@@ -73,7 +73,7 @@
         <div class="vcard-price">$ {{ v.price | number }}</div>
         <div class="vcard-specs">
           <span><i class="fa-solid fa-gauge"></i> {{ v.mileage | number }} km</span>
-          <span><i class="fa-solid fa-gas-pump"></i> {{ v.fuel }}</span>
+          <span><i class="fa-solid fa-gas-pump"></i> {{ v.fuel | fuel }}</span>
         </div>
       </div>
     </a>

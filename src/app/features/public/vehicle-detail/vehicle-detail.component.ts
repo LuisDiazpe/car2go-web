@@ -8,11 +8,12 @@ import { AuthService } from '../../../core/services/auth.service';
 import { Vehicle } from '../../../core/models/vehicle.model';
 import { TrustBadgeComponent } from '../../../shared/trust-badge/trust-badge.component';
 import { SocialService } from '../../../core/services/social.service';
+import { FuelPipe } from '../../../shared/pipes/fuel.pipe';
 
 @Component({
   selector: 'app-vehicle-detail',
   standalone: true,
-  imports: [CommonModule, RouterLink, TranslateModule, TrustBadgeComponent],
+  imports: [CommonModule, RouterLink, TranslateModule, TrustBadgeComponent, FuelPipe],
   templateUrl: './vehicle-detail.component.html',
   styleUrls: ['./vehicle-detail.component.css']
 })
