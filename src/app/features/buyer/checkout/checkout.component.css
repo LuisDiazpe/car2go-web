@@ -1,18 +1,30 @@
 .checkout { padding: 32px 20px 60px; max-width: 900px; }
-.checkout h1 { margin:0 0 24px; }
-.co-grid { display:grid; grid-template-columns: 1fr 1fr; gap:24px; }
-.co-summary { padding:24px; }
-.co-img { height:180px; border-radius:10px; background-size:cover; background-position:center; margin-bottom:16px; }
-.co-summary h3 { margin:0 0 4px; }
-.co-total { display:flex; justify-content:space-between; align-items:center; margin-top:18px; padding-top:18px; border-top:1px solid var(--c-border); }
-.co-total b { font-family:'Sora'; font-size:26px; color:var(--c-primary); }
-.co-pay { padding:24px; }
-.co-pay h3 { margin:0 0 16px; }
-.pay-options { display:flex; flex-direction:column; gap:10px; margin-bottom:18px; }
-.pay-opt { display:flex; align-items:center; gap:10px; padding:14px; border:1.5px solid var(--c-border); border-radius:10px; cursor:pointer; font-weight:500; }
-.pay-opt input { display:none; }
-.pay-opt.sel { border-color:var(--c-primary); background:#e3f2fd; }
-.pay-opt i { color:var(--c-primary); width:20px; }
-.auth-error { background:#ffebee;color:var(--c-danger);padding:10px 14px;border-radius:8px;margin-bottom:14px; }
-.done-msg { background:#e8f5e9;color:var(--c-success);padding:18px;border-radius:10px;text-align:center;font-size:18px; }
-@media (max-width:700px){ .co-grid { grid-template-columns:1fr; } }
+.ck-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
+.ck-loading { text-align: center; padding: 60px; color: var(--c-muted); }
+
+.ck-summary { overflow: hidden; }
+.ck-summary img { width: 100%; height: 200px; object-fit: cover; }
+.ck-sum-body { padding: 20px; }
+.ck-sum-body h2 { margin: 0 0 4px; }
+.ck-price { font-family: 'Sora'; font-weight: 700; font-size: 28px; color: var(--c-primary); margin-top: 12px; }
+
+.ck-payment { padding: 24px; }
+.ck-payment h3 { margin: 0 0 6px; display: flex; align-items: center; gap: 8px; }
+.ck-test-note { font-size: 13px; margin-bottom: 18px; }
+.ck-payment label { display: block; font-weight: 600; font-size: 14px; margin-bottom: 8px; }
+
+/* Campo de tarjeta de Stripe */
+.card-element {
+  border: 1.5px solid var(--c-border); border-radius: 10px; padding: 14px;
+  background: #fff; margin-bottom: 16px;
+}
+
+.ck-pay-btn { width: 100%; padding: 14px; font-size: 16px; }
+.ck-secure { text-align: center; font-size: 13px; margin-top: 14px; }
+.auth-error { background: #ffebee; color: var(--c-danger); padding: 10px 14px; border-radius: 8px; margin-bottom: 14px; font-size: 14px; }
+
+.ck-done { padding: 60px 24px; text-align: center; }
+.ck-done i { font-size: 64px; color: var(--c-success); margin-bottom: 16px; }
+.ck-done h2 { margin: 0 0 8px; }
+
+@media (max-width: 768px) { .ck-grid { grid-template-columns: 1fr; } }

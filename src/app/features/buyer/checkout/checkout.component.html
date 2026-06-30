@@ -1,28 +1,41 @@
-<div class="container checkout" *ngIf="vehicle">
-  <h1>{{ 'CHECKOUT' | translate }}</h1>
+<div class="container checkout">
+  <div *ngIf="loading" class="ck-loading"><i class="fa-solid fa-spinner fa-spin"></i> {{ 'LOADING' | translate }}</div>
 
-  <div class="done-msg" *ngIf="done"><i class="fa-solid fa-circle-check"></i> {{ 'PAYMENT_SUCCESS' | translate }}</div>
-
-  <div class="co-grid" *ngIf="!done">
-    <div class="card co-summary">
-      <div class="co-img" [style.background-image]="'url('+img(vehicle)+')'"></div>
-      <h3>{{ vehicle.brand }} {{ vehicle.model }}</h3>
-      <div class="text-muted">{{ vehicle.year }} · {{ vehicle.location }}</div>
-      <div class="co-total"><span>{{ 'TOTAL' | translate }}</span><b>$ {{ vehicle.price | number }}</b></div>
+  <div *ngIf="!loading && vehicle" class="ck-grid">
+    <!-- Resumen del auto -->
+    <div class="ck-summary card">
+      <img [src]="img(vehicle)" alt="{{ vehicle.brand }}">
+      <div class="ck-sum-body">
+        <h2>{{ vehicle.brand }} {{ vehicle.model }}</h2>
+        <p class="text-muted">{{ vehicle.year }} · {{ vehicle.location }}</p>
+        <div class="ck-price">$ {{ vehicle.price | number }}</div>
+      </div>
     </div>
 
-    <div class="card co-pay">
-      <h3>{{ 'PAYMENT_METHOD' | translate }}</h3>
-      <div class="pay-options">
-        <label class="pay-opt" [class.sel]="paymentMethod==='CARD'"><input type="radio" [(ngModel)]="paymentMethod" value="CARD"><i class="fa-solid fa-credit-card"></i> {{ 'CARD' | translate }}</label>
-        <label class="pay-opt" [class.sel]="paymentMethod==='CASH'"><input type="radio" [(ngModel)]="paymentMethod" value="CASH"><i class="fa-solid fa-money-bill"></i> {{ 'CASH' | translate }}</label>
-        <label class="pay-opt" [class.sel]="paymentMethod==='TRANSFER'"><input type="radio" [(ngModel)]="paymentMethod" value="TRANSFER"><i class="fa-solid fa-building-columns"></i> {{ 'TRANSFER' | translate }}</label>
-      </div>
+    <!-- Formulario de pago -->
+    <div class="ck-payment card" *ngIf="!done">
+      <h3><i class="fa-brands fa-stripe-s"></i> {{ 'PAYMENT_DETAILS' | translate }}</h3>
+      <p class="text-muted ck-test-note">{{ 'STRIPE_TEST_NOTE' | translate }}</p>
+
+      <label>{{ 'CARD_INFO' | translate }}</label>
+      <!-- Aquí Stripe monta el campo seguro de tarjeta -->
+      <div id="card-element" class="card-element"></div>
+
       <div class="auth-error" *ngIf="error">{{ error | translate }}</div>
-      <button class="btn btn-primary btn-block" (click)="pay()" [disabled]="processing">
-        {{ processing ? ('PROCESSING'|translate) : ('CONFIRM_PAYMENT'|translate) }}
+
+      <button class="btn btn-primary ck-pay-btn" (click)="pay()" [disabled]="processing || !cardReady">
+        <span *ngIf="!processing"><i class="fa-solid fa-lock"></i> {{ 'PAY_NOW' | translate }} $ {{ vehicle.price | number }}</span>
+        <span *ngIf="processing"><i class="fa-solid fa-spinner fa-spin"></i> {{ 'PROCESSING' | translate }}</span>
       </button>
-      <p class="text-muted text-center mt-1"><i class="fa-solid fa-lock"></i> {{ 'SECURE_PAYMENT' | translate }}</p>
+
+      <p class="ck-secure text-muted"><i class="fa-solid fa-shield-halved"></i> {{ 'SECURE_PAYMENT' | translate }}</p>
+    </div>
+
+    <!-- Confirmación -->
+    <div class="ck-done card" *ngIf="done">
+      <i class="fa-solid fa-circle-check"></i>
+      <h2>{{ 'PAYMENT_SUCCESS' | translate }}</h2>
+      <p class="text-muted">{{ 'REDIRECTING' | translate }}</p>
     </div>
   </div>
 </div>

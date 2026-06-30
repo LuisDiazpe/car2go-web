@@ -365,5 +365,14 @@
   "TOP_SELLERS": "Mejores vendedores",
   "TOP_MECHANICS": "Mejores mecánicos",
   "NO_RANKING": "Aún no hay datos suficientes para el ranking",
-  "USER": "Usuario"
+  "USER": "Usuario",
+  "PAYMENT_DETAILS": "Datos de pago",
+  "STRIPE_TEST_NOTE": "Modo de prueba. Usa la tarjeta 4242 4242 4242 4242, cualquier fecha futura y cualquier CVC.",
+  "CARD_INFO": "Información de la tarjeta",
+  "PAY_NOW": "Pagar",
+  "PROCESSING": "Procesando...",
+  "SECURE_PAYMENT": "Pago seguro procesado por Stripe",
+  "PAYMENT_SUCCESS": "¡Pago exitoso!",
+  "PAYMENT_ERROR": "Error al procesar el pago",
+  "REDIRECTING": "Redirigiendo a tus compras..."
 }

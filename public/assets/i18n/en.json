@@ -365,5 +365,14 @@
   "TOP_SELLERS": "Top sellers",
   "TOP_MECHANICS": "Top mechanics",
   "NO_RANKING": "Not enough data for the ranking yet",
-  "USER": "User"
+  "USER": "User",
+  "PAYMENT_DETAILS": "Payment details",
+  "STRIPE_TEST_NOTE": "Test mode. Use card 4242 4242 4242 4242, any future date and any CVC.",
+  "CARD_INFO": "Card information",
+  "PAY_NOW": "Pay",
+  "PROCESSING": "Processing...",
+  "SECURE_PAYMENT": "Secure payment processed by Stripe",
+  "PAYMENT_SUCCESS": "Payment successful!",
+  "PAYMENT_ERROR": "Error processing the payment",
+  "REDIRECTING": "Redirecting to your purchases..."
 }
