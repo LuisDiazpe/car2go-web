@@ -22,6 +22,7 @@
         <a routerLink="/buyer/favorites" (click)="menuOpen=false">{{ 'MY_FAVORITES' | translate }}</a>
         <a routerLink="/buyer/purchases" (click)="menuOpen=false">{{ 'MY_PURCHASES' | translate }}</a>
       </ng-container>
+      <a routerLink="/seller/sales" (click)="menuOpen=false" *ngIf="auth.hasRole('ROLE_SELLER')">{{ 'MY_SALES' | translate }}</a>
 
       <!-- Selector de idioma -->
       <div class="tb-lang">

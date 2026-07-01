@@ -18,6 +18,7 @@ export const routes: Routes = [
   // Vendedor (ROLE_SELLER)
   { path: 'seller/publish', canActivate: [roleGuard], data: { role: 'ROLE_SELLER' }, loadComponent: () => import('./features/seller/publish/publish.component').then(m => m.PublishComponent) },
   { path: 'seller/my-vehicles', canActivate: [roleGuard], data: { role: 'ROLE_SELLER' }, loadComponent: () => import('./features/seller/my-vehicles/my-vehicles.component').then(m => m.MyVehiclesComponent) },
+  { path: 'seller/sales', canActivate: [roleGuard], data: { role: 'ROLE_SELLER' }, loadComponent: () => import('./features/seller/sales/sales.component').then(m => m.SalesComponent) },
 
   // Mecánico (ROLE_MECHANIC)
   { path: 'mechanic/pending', canActivate: [roleGuard], data: { role: 'ROLE_MECHANIC' }, loadComponent: () => import('./features/mechanic/pending/pending.component').then(m => m.PendingComponent) },

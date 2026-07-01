@@ -24,6 +24,9 @@ export class CheckoutComponent implements OnInit {
   done = false;
   error = '';
 
+  // Método de pago elegido: 'CARD' (Stripe) o 'CASH' (efectivo)
+  method: 'CARD' | 'CASH' = 'CARD';
+
   private stripe: Stripe | null = null;
   private elements: StripeElements | null = null;
   private card: StripeCardElement | null = null;
@@ -37,30 +40,31 @@ export class CheckoutComponent implements OnInit {
   ) {}
 
   async ngOnInit(): Promise<void> {
-    // Cargar Stripe en paralelo
     this.stripe = await loadStripe(STRIPE_PUBLISHABLE_KEY);
-
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.vehicleService.getById(id).subscribe({
       next: (v) => {
-        this.vehicle = v;
-        this.loading = false;
-        // Montar el formulario de Stripe DESPUÉS de que el div exista en el DOM
-        // (loading ya es false, así que el *ngIf mostró el #card-element)
-        setTimeout(() => this.mountCard(), 100);
+        this.vehicle = v; this.loading = false;
+        // Montar la tarjeta solo si el método es CARD (por defecto)
+        setTimeout(() => this.mountCardIfNeeded(), 100);
       },
       error: () => { this.loading = false; }
     });
   }
 
-  private mountCard() {
-    if (!this.stripe) { this.error = 'PAYMENT_ERROR'; return; }
-    const el = document.getElementById('card-element');
-    if (!el) {
-      // Reintenta una vez más por si el DOM aún no terminó
-      setTimeout(() => this.mountCard(), 150);
-      return;
+  // Cambiar método de pago
+  selectMethod(m: 'CARD' | 'CASH') {
+    this.method = m;
+    this.error = '';
+    if (m === 'CARD') {
+      setTimeout(() => this.mountCardIfNeeded(), 100);
     }
+  }
+
+  private mountCardIfNeeded() {
+    if (this.method !== 'CARD' || this.cardReady || !this.stripe) return;
+    const el = document.getElementById('card-element');
+    if (!el) { setTimeout(() => this.mountCardIfNeeded(), 150); return; }
     this.elements = this.stripe.elements();
     this.card = this.elements.create('card', {
       style: { base: { fontSize: '16px', color: '#1f2d3d' } }
@@ -71,18 +75,31 @@ export class CheckoutComponent implements OnInit {
 
   async pay() {
     if (!this.vehicle?.id || !this.vehicle.sellerProfileId) { this.error = 'PAYMENT_ERROR'; return; }
-    if (!this.stripe || !this.card) { this.error = 'PAYMENT_ERROR'; return; }
 
+    // ----- PAGO EN EFECTIVO -----
+    if (this.method === 'CASH') {
+      this.processing = true; this.error = '';
+      this.transactionService.create({
+        sellerProfileId: this.vehicle.sellerProfileId,
+        vehicleId: this.vehicle.id,
+        amount: this.vehicle.price,
+        paymentMethod: 'CASH'
+      }).subscribe({
+        next: () => { this.processing = false; this.done = true; setTimeout(() => this.router.navigate(['/buyer/purchases']), 2200); },
+        error: (e) => { this.processing = false; this.error = e?.error?.message || 'PAYMENT_ERROR'; }
+      });
+      return;
+    }
+
+    // ----- PAGO CON TARJETA (STRIPE) -----
+    if (!this.stripe || !this.card) { this.error = 'PAYMENT_ERROR'; return; }
     this.processing = true; this.error = '';
 
     try {
-      // Paso 1: pedir el clientSecret al backend
       const intent = await this.transactionService
         .createPaymentIntent(this.vehicle.price, 'pen').toPromise();
-
       if (!intent?.clientSecret) { throw new Error('no client secret'); }
 
-      // Paso 2: confirmar el pago con la tarjeta
       const result = await this.stripe.confirmCardPayment(intent.clientSecret, {
         payment_method: { card: this.card }
       });
@@ -94,7 +111,6 @@ export class CheckoutComponent implements OnInit {
       }
 
       if (result.paymentIntent && result.paymentIntent.status === 'succeeded') {
-        // Paso 3: registrar la transacción (marca el auto como SOLD)
         this.transactionService.create({
           sellerProfileId: this.vehicle.sellerProfileId,
           vehicleId: this.vehicle.id,

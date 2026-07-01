@@ -6,6 +6,12 @@
       <span class="badge" [ngClass]="{'badge-pending': vehicle.status==='PENDING','badge-reviewed': vehicle.status==='REVIEWED','badge-rejected': vehicle.status==='REJECTED','badge-sold': vehicle.status==='SOLD'}">{{ vehicle.status }}</span>
       <h1>{{ vehicle.brand }} {{ vehicle.model }}</h1>
       <div class="vd-price">$ {{ vehicle.price | number }}</div>
+      <div class="vd-interested" *ngIf="interestedCount > 0 && vehicle.status !== 'SOLD'">
+        <i class="fa-solid fa-fire"></i>
+        {{ interestedCount }}
+        <span *ngIf="interestedCount === 1">{{ 'INTERESTED_ONE' | translate }}</span>
+        <span *ngIf="interestedCount > 1">{{ 'INTERESTED_MANY' | translate }}</span>
+      </div>
       <p class="text-muted">{{ vehicle.description }}</p>
 
       <div class="vd-specs">

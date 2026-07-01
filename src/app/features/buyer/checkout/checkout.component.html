@@ -12,29 +12,52 @@
       </div>
     </div>
 
-    <!-- Formulario de pago -->
+    <!-- Pago -->
     <div class="ck-payment card" *ngIf="!done">
-      <h3><i class="fa-brands fa-stripe-s"></i> {{ 'PAYMENT_DETAILS' | translate }}</h3>
-      <p class="text-muted ck-test-note">{{ 'STRIPE_TEST_NOTE' | translate }}</p>
+      <h3>{{ 'PAYMENT_DETAILS' | translate }}</h3>
 
-      <label>{{ 'CARD_INFO' | translate }}</label>
-      <!-- Aquí Stripe monta el campo seguro de tarjeta -->
-      <div id="card-element" class="card-element"></div>
+      <!-- Selector de método de pago -->
+      <div class="ck-methods">
+        <button class="ck-method" [class.active]="method==='CARD'" (click)="selectMethod('CARD')">
+          <i class="fa-solid fa-credit-card"></i> {{ 'PAY_CARD' | translate }}
+        </button>
+        <button class="ck-method" [class.active]="method==='CASH'" (click)="selectMethod('CASH')">
+          <i class="fa-solid fa-money-bill-wave"></i> {{ 'PAY_CASH' | translate }}
+        </button>
+      </div>
+
+      <!-- TARJETA: formulario de Stripe -->
+      <div *ngIf="method==='CARD'">
+        <p class="text-muted ck-test-note">{{ 'STRIPE_TEST_NOTE' | translate }}</p>
+        <label>{{ 'CARD_INFO' | translate }}</label>
+        <div id="card-element" class="card-element"></div>
+      </div>
+
+      <!-- EFECTIVO: aviso -->
+      <div *ngIf="method==='CASH'" class="ck-cash-note">
+        <i class="fa-solid fa-circle-info"></i> {{ 'CASH_NOTE' | translate }}
+      </div>
 
       <div class="auth-error" *ngIf="error">{{ error | translate }}</div>
 
-      <button class="btn btn-primary ck-pay-btn" (click)="pay()" [disabled]="processing || !cardReady">
-        <span *ngIf="!processing"><i class="fa-solid fa-lock"></i> {{ 'PAY_NOW' | translate }} $ {{ vehicle.price | number }}</span>
+      <button class="btn btn-primary ck-pay-btn" (click)="pay()"
+              [disabled]="processing || (method==='CARD' && !cardReady)">
+        <span *ngIf="!processing">
+          <i class="fa-solid" [ngClass]="method==='CASH' ? 'fa-handshake' : 'fa-lock'"></i>
+          <ng-container *ngIf="method==='CARD'"> {{ 'PAY_NOW' | translate }} $ {{ vehicle.price | number }}</ng-container>
+          <ng-container *ngIf="method==='CASH'"> {{ 'RESERVE_CASH' | translate }}</ng-container>
+        </span>
         <span *ngIf="processing"><i class="fa-solid fa-spinner fa-spin"></i> {{ 'PROCESSING' | translate }}</span>
       </button>
 
-      <p class="ck-secure text-muted"><i class="fa-solid fa-shield-halved"></i> {{ 'SECURE_PAYMENT' | translate }}</p>
+      <p class="ck-secure text-muted" *ngIf="method==='CARD'"><i class="fa-solid fa-shield-halved"></i> {{ 'SECURE_PAYMENT' | translate }}</p>
     </div>
 
     <!-- Confirmación -->
     <div class="ck-done card" *ngIf="done">
       <i class="fa-solid fa-circle-check"></i>
-      <h2>{{ 'PAYMENT_SUCCESS' | translate }}</h2>
+      <h2 *ngIf="method==='CARD'">{{ 'PAYMENT_SUCCESS' | translate }}</h2>
+      <h2 *ngIf="method==='CASH'">{{ 'CASH_RESERVED' | translate }}</h2>
       <p class="text-muted">{{ 'REDIRECTING' | translate }}</p>
     </div>
   </div>

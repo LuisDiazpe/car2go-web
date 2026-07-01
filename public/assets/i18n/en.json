@@ -374,5 +374,19 @@
   "SECURE_PAYMENT": "Secure payment processed by Stripe",
   "PAYMENT_SUCCESS": "Payment successful!",
   "PAYMENT_ERROR": "Error processing the payment",
-  "REDIRECTING": "Redirecting to your purchases..."
+  "REDIRECTING": "Redirecting to your purchases...",
+  "INTERESTED_ONE": "person wants to buy this car",
+  "INTERESTED_MANY": "people want to buy this car",
+  "PAY_CARD": "Card",
+  "PAY_CASH": "Cash",
+  "CASH_NOTE": "You will pay in cash when you meet the seller. The car will be reserved until the seller confirms the payment.",
+  "RESERVE_CASH": "Reserve and pay in cash",
+  "CASH_RESERVED": "Reservation registered!",
+  "MY_SALES": "My sales",
+  "MY_SALES_SUB": "Manage your car sales and confirm cash payments",
+  "NO_SALES": "You have no sales yet",
+  "VEHICLE": "Vehicle",
+  "CONFIRM_SALE": "Confirm sale",
+  "SALE_CONFIRMED": "Sale confirmed! The car was marked as sold.",
+  "SALE_CONFIRM_ERROR": "Could not confirm the sale"
 }

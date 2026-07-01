@@ -27,4 +27,20 @@
 .ck-done i { font-size: 64px; color: var(--c-success); margin-bottom: 16px; }
 .ck-done h2 { margin: 0 0 8px; }
 
+/* Selector de método de pago */
+.ck-methods { display: flex; gap: 12px; margin-bottom: 20px; }
+.ck-method {
+  flex: 1; padding: 14px; border: 2px solid var(--c-border); background: #fff;
+  border-radius: 10px; cursor: pointer; font-family: 'Sora'; font-weight: 600;
+  font-size: 14px; color: var(--c-muted); display: flex; align-items: center;
+  justify-content: center; gap: 8px; transition: all .15s;
+}
+.ck-method:hover { border-color: var(--c-primary); }
+.ck-method.active { border-color: var(--c-primary); background: #e3f2fd; color: var(--c-primary); }
+.ck-cash-note {
+  background: #fff3e0; color: #e65100; padding: 14px; border-radius: 10px;
+  font-size: 14px; margin-bottom: 16px; display: flex; align-items: center; gap: 8px;
+}
+
+
 @media (max-width: 768px) { .ck-grid { grid-template-columns: 1fr; } }

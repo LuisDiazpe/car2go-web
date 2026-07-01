@@ -14,3 +14,9 @@
 
 .vd-buy-note { margin-top:12px; padding:10px 14px; background:#fff3e0; color:#e65100; border-radius:8px; font-size:14px; }
 .vd-actions { display:flex; gap:12px; flex-wrap:wrap; }
+.vd-interested {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: #fff3e0; color: #e65100; font-weight: 600; font-size: 14px;
+  padding: 6px 12px; border-radius: 8px; margin: 8px 0;
+}
+.vd-interested i { color: #fb8c00; }

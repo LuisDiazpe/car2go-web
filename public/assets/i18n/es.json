@@ -374,5 +374,19 @@
   "SECURE_PAYMENT": "Pago seguro procesado por Stripe",
   "PAYMENT_SUCCESS": "¡Pago exitoso!",
   "PAYMENT_ERROR": "Error al procesar el pago",
-  "REDIRECTING": "Redirigiendo a tus compras..."
+  "REDIRECTING": "Redirigiendo a tus compras...",
+  "INTERESTED_ONE": "persona quiere comprar este auto",
+  "INTERESTED_MANY": "personas quieren comprar este auto",
+  "PAY_CARD": "Tarjeta",
+  "PAY_CASH": "Efectivo",
+  "CASH_NOTE": "Pagarás en efectivo al encontrarte con el vendedor. El auto quedará reservado hasta que el vendedor confirme el pago.",
+  "RESERVE_CASH": "Reservar y pagar en efectivo",
+  "CASH_RESERVED": "¡Reserva registrada!",
+  "MY_SALES": "Mis ventas",
+  "MY_SALES_SUB": "Gestiona las ventas de tus autos y confirma los pagos en efectivo",
+  "NO_SALES": "Aún no tienes ventas",
+  "VEHICLE": "Vehículo",
+  "CONFIRM_SALE": "Confirmar venta",
+  "SALE_CONFIRMED": "¡Venta confirmada! El auto fue marcado como vendido.",
+  "SALE_CONFIRM_ERROR": "No se pudo confirmar la venta"
 }

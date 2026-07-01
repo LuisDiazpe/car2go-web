@@ -1,0 +1,13 @@
+.sales { padding: 32px 20px 60px; max-width: 760px; }
+.sales h1 { margin: 0 0 6px; }
+.sale-list { display: flex; flex-direction: column; gap: 12px; margin-top: 24px; }
+.sale-card { display: flex; align-items: center; justify-content: space-between; padding: 18px 22px; gap: 16px; }
+.sale-info h3 { margin: 0 0 8px; font-size: 17px; }
+.sale-meta { display: flex; gap: 16px; align-items: center; }
+.sale-amount { font-family: 'Sora'; font-weight: 700; font-size: 18px; color: var(--c-primary); }
+.sale-method { color: var(--c-muted); font-size: 14px; display: inline-flex; align-items: center; gap: 6px; }
+.sale-status { display: flex; align-items: center; gap: 14px; }
+.sale-confirm { padding: 8px 16px; font-size: 14px; white-space: nowrap; }
+.sales-empty { text-align: center; padding: 50px; color: var(--c-muted); }
+.sale-msg { background: #e8f5e9; color: #2e7d32; padding: 12px 16px; border-radius: 8px; margin-bottom: 16px; }
+@media (max-width: 600px) { .sale-card { flex-direction: column; align-items: flex-start; } }

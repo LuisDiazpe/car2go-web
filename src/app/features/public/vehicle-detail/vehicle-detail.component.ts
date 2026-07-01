@@ -8,6 +8,7 @@ import { AuthService } from '../../../core/services/auth.service';
 import { Vehicle } from '../../../core/models/vehicle.model';
 import { TrustBadgeComponent } from '../../../shared/trust-badge/trust-badge.component';
 import { SocialService } from '../../../core/services/social.service';
+import { TransactionService } from '../../../core/services/transaction.service';
 import { FuelPipe } from '../../../shared/pipes/fuel.pipe';
 
 @Component({
@@ -21,7 +22,8 @@ export class VehicleDetailComponent implements OnInit {
   vehicle?: Vehicle;
   loading = true;
   favMessage = '';
-  sellerTrust = { average: 0, count: 0}
+  sellerTrust = { average: 0, count: 0 };
+  interestedCount = 0;
 
   constructor(
     private route: ActivatedRoute,
@@ -29,19 +31,29 @@ export class VehicleDetailComponent implements OnInit {
     private vehicleService: VehicleService,
     private favoriteService: FavoriteService,
     public auth: AuthService,
-    private social: SocialService
+    private social: SocialService,
+    private transactionService: TransactionService
   ) {}
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.vehicleService.getById(id).subscribe({
-      next: (v) => { this.vehicle = v; this.loading = false;
+      next: (v) => {
+        this.vehicle = v; this.loading = false;
         if (this.vehicle?.sellerProfileId) {
           this.social.getReviews(this.vehicle.sellerProfileId).subscribe({
             next: (r) => this.sellerTrust = { average: r.average, count: r.count },
             error: () => {}
           });
-        } },
+        }
+        // Contador de interesados (compras en efectivo pendientes)
+        if (this.vehicle?.id) {
+          this.transactionService.getInterested(this.vehicle.id).subscribe({
+            next: (res) => this.interestedCount = res.interested,
+            error: () => {}
+          });
+        }
+      },
       error: () => { this.loading = false; }
     });
   }
@@ -62,5 +74,5 @@ export class VehicleDetailComponent implements OnInit {
     });
   }
 
-  img(v: Vehicle) { return v.images?.[0] || 'https://via.placeholder.com/700x420?text=Car2Go'; }
+  img(v: Vehicle) { return v.images?.[0] || 'https://placehold.co/700x420?text=Car2Go'; }
 }

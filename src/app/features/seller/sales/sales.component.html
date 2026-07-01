@@ -1,0 +1,39 @@
+<div class="container sales">
+  <h1><i class="fa-solid fa-receipt"></i> {{ 'MY_SALES' | translate }}</h1>
+  <p class="text-muted">{{ 'MY_SALES_SUB' | translate }}</p>
+
+  <div class="sale-msg" *ngIf="message">{{ message | translate }}</div>
+
+  <div *ngIf="loading" class="sales-empty"><i class="fa-solid fa-spinner fa-spin"></i> {{ 'LOADING' | translate }}</div>
+  <div *ngIf="!loading && sales.length === 0" class="sales-empty">{{ 'NO_SALES' | translate }}</div>
+
+  <div class="sale-list" *ngIf="!loading && sales.length > 0">
+    <div class="sale-card card" *ngFor="let s of sales">
+      <div class="sale-info">
+        <h3>{{ s.vehicleLabel || ('VEHICLE' | translate) + ' #' + s.vehicleId }}</h3>
+        <div class="sale-meta">
+          <span class="sale-amount">$ {{ s.amount | number }}</span>
+          <span class="sale-method">
+            <i class="fa-solid" [ngClass]="(s.paymentMethod==='CASH'||s.paymentMethod==='EFECTIVO') ? 'fa-money-bill-wave' : 'fa-credit-card'"></i>
+            {{ (s.paymentMethod==='CASH'||s.paymentMethod==='EFECTIVO') ? ('PAY_CASH' | translate) : ('PAY_CARD' | translate) }}
+          </span>
+        </div>
+      </div>
+
+      <div class="sale-status">
+        <span class="badge" [ngClass]="{
+          'badge-pending': s.status==='PENDING',
+          'badge-sold': s.status==='COMPLETED',
+          'badge-rejected': s.status==='REFUNDED' || s.status==='FAILED'
+        }">{{ s.status }}</span>
+
+        <!-- Botón confirmar solo para efectivo pendiente -->
+        <button class="btn btn-primary sale-confirm" *ngIf="isCashPending(s)"
+                (click)="confirm(s)" [disabled]="confirmingId === s.id">
+          <span *ngIf="confirmingId !== s.id"><i class="fa-solid fa-check"></i> {{ 'CONFIRM_SALE' | translate }}</span>
+          <span *ngIf="confirmingId === s.id"><i class="fa-solid fa-spinner fa-spin"></i> {{ 'PROCESSING' | translate }}</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
